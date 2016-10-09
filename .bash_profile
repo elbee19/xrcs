@@ -296,3 +296,11 @@ httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grab
 #   e.g.: hdiutil create -size 10m 10MB.dmg
 #   the above create files that are almost all zeros - if random bytes are desired
 #   then use: ~/Dev/Perl/randBytes 1048576 > 10MB.dat
+
+
+#   ---------------------------------------
+#   10.  PROGRAMMING PREFERENCES
+#   ---------------------------------------
+set tabexpand   # New tabs are 4 spaces 
+set tabstop=4   # Existing tabs are 4 spaces
+export GIT_EDITOR="vim"
