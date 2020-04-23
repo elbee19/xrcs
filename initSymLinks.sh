@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 shopt -s dotglob
+
+#Since the script is based on getting filenames from the current directory, it should always be run from the directory containing it
+cd "${0%/*}"
+
 for filePath in ./*
 do
 	fileName=${filePath##*/}
@@ -13,4 +17,17 @@ do
 		fi
 		ln -sf "${PWD}/${fileName}" $newFilePath
 	fi
+
+	#TODO - Move the file moving logic to a function someday
+	if [[ $fileName == ".bashrc" ]]; then
+		newBashProfilePath="${HOME}/.bash_profile"
+
+		if [ -f $newBashProfilePath ]; then 
+			timeStr=`date +%s`
+			echo "Moving ${newBashProfilePath} to ${newBashProfilePath}${timeStr}"
+			mv ${newBashProfilePath} "${newBashProfilePath}${timeStr}"
+		fi
+		ln -sf "${PWD}/${fileName}" $newBashProfilePath
+	fi
+
 done
