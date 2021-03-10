@@ -7,6 +7,11 @@ cd "${0%/*}"
 for filePath in ./*
 do
 	fileName=${filePath##*/}
+	# Don't move the .git folder
+	if [[ $fileName == .git ]]; then
+		continue
+	fi
+
 	if [[ $fileName == .* ]]; then
 		newFilePath="${HOME}/${fileName}"
 
